@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Live weather conditions for cities around the world.">
+  <title>Weather / Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="top-bar">
+      <span class="eyebrow">LIVE WEATHER</span>
+      <time id="clock" aria-label="Current time"></time>
+    </header>
+
+    <section class="intro" aria-labelledby="page-title">
+      <span class="eyebrow">WEATHER / NOW</span>
+      <h1 id="page-title">Forecast at a glance</h1>
+      <p>Live conditions for any city around the world.</p>
+    </section>
+
+    <form id="search-form" class="search-row">
+      <label class="sr-only" for="city-input">City name</label>
+      <input id="city-input" name="city" type="search" value="London" placeholder="Search a city" autocomplete="off" required>
+      <button class="primary-button" type="submit">Search</button>
+    </form>
+
+    <div class="quick-row" aria-label="Quick city searches">
+      <span class="quick-label">QUICK SEARCH</span>
+      <button class="quick-button" type="button" data-city="London">London</button>
+      <button class="quick-button" type="button" data-city="New York">New York</button>
+      <button class="quick-button" type="button" data-city="Tokyo">Tokyo</button>
+      <button class="quick-button" type="button" data-city="Sydney">Sydney</button>
+    </div>
+
+    <p id="status" class="status" role="status">Ready for a new city</p>
+
+    <section id="result-panel" class="result-panel" aria-live="polite" hidden>
+      <div class="weather-heading">
+        <div id="weather-icon" class="weather-icon" aria-hidden="true">--</div>
+        <div>
+          <h2 id="location">--</h2>
+          <p id="condition">--</p>
+        </div>
+      </div>
+      <div id="temperature" class="temperature">--</div>
+      <div class="metrics-grid">
+        <div class="metric"><span>FEELS LIKE</span><strong id="feels-like">--</strong></div>
+        <div class="metric"><span>HUMIDITY</span><strong id="humidity">--</strong></div>
+        <div class="metric"><span>WIND SPEED</span><strong id="wind-speed">--</strong></div>
+        <div class="metric"><span>PRESSURE</span><strong id="pressure">--</strong></div>
+      </div>
+    </section>
+
+    <footer class="actions">
+      <span>Metric units / OpenWeatherMap</span>
+      <div>
+        <button id="clear-button" class="secondary-button" type="button">Clear</button>
+        <button id="refresh-button" class="secondary-button" type="button">Refresh</button>
+      </div>
+    </footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
