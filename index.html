@@ -23,11 +23,17 @@
       <p>Live conditions for any city around the world.</p>
     </section>
 
-    <form id="search-form" class="search-row">
-      <label class="sr-only" for="city-input">City name</label>
-      <input id="city-input" name="city" type="search" value="London" placeholder="Search a city" autocomplete="off" required>
-      <button class="primary-button" type="submit">Search</button>
-    </form>
+    <div class="search-wrap">
+      <form id="search-form" class="search-row">
+        <label class="sr-only" for="city-input">City name</label>
+        <div class="input-wrap">
+          <input id="city-input" name="city" type="search" value="London" placeholder="Search a city" autocomplete="off" required>
+          <button id="clear-input-btn" class="clear-input-btn" type="button" aria-label="Clear input" hidden>&#x2715;</button>
+          <div id="search-history" class="search-history" aria-live="polite" hidden></div>
+        </div>
+        <button class="primary-button" type="submit">Search</button>
+      </form>
+    </div>
 
     <div class="quick-row" aria-label="Quick city searches">
       <span class="quick-label">QUICK SEARCH</span>

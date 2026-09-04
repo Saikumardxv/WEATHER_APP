@@ -29,9 +29,18 @@ button { cursor: pointer; }
 .eyebrow, .quick-label, .metric span { color: var(--teal-dark); font: 700 11px "DM Mono", monospace; letter-spacing: .08em; }
 .intro h1 { max-width: 520px; margin: 8px 0 4px; font-size: clamp(2.1rem, 7vw, 3.3rem); line-height: 1.05; letter-spacing: 0; }
 .intro p { margin: 0 0 28px; color: var(--muted); font-size: 15px; }
+.search-wrap { }
 .search-row { display: flex; gap: 10px; }
-.search-row input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: 4px; padding: 14px 16px; outline: none; background: var(--white); color: var(--navy); box-shadow: 0 4px 12px rgba(23, 43, 58, .03); }
+.input-wrap { position: relative; min-width: 0; flex: 1; display: flex; align-items: center; }
+.search-row input { width: 100%; border: 1px solid var(--line); border-radius: 4px; padding: 14px 40px 14px 16px; outline: none; background: var(--white); color: var(--navy); box-shadow: 0 4px 12px rgba(23, 43, 58, .03); }
 .search-row input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(40, 127, 131, .14); }
+/* hide the native browser clear button on type=search */
+.search-row input[type=search]::-webkit-search-cancel-button { -webkit-appearance: none; }
+.clear-input-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); border: none; background: transparent; color: var(--muted); font-size: 15px; line-height: 1; padding: 2px 4px; border-radius: 3px; }
+.clear-input-btn:hover { color: var(--navy); }
+.search-history { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 5; display: flex; flex-direction: column; gap: 4px; padding: 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--white); box-shadow: var(--shadow); }
+.search-history-item { width: 100%; padding: 8px 10px; border: 0; border-radius: 4px; background: transparent; color: var(--navy); text-align: left; font-size: 14px; }
+.search-history-item:hover { background: #edf5f5; color: var(--teal-dark); }
 .primary-button, .secondary-button, .quick-button { border: 1px solid transparent; border-radius: 4px; transition: background .2s, color .2s, border-color .2s; }
 .primary-button { padding: 0 22px; background: var(--teal); color: var(--white); font-weight: 800; }
 .primary-button:hover { background: var(--teal-dark); }
@@ -42,11 +51,11 @@ button { cursor: pointer; }
 .quick-button:hover { border-color: var(--teal); color: var(--teal-dark); }
 .status { min-height: 20px; margin: 16px 0 0; color: var(--muted); font-size: 13px; }
 .status.error { color: var(--danger); }
-.status.loading { color: var(--orange); }
+.status.loading { color: var(--orange); animation: pulse 1.4s ease-in-out infinite; }
 .status.success { color: var(--teal-dark); }
 .result-panel { margin-top: 22px; padding: 25px; border-radius: 6px; background: var(--white); box-shadow: var(--shadow); animation: reveal .35s ease both; }
 .weather-heading { display: flex; align-items: center; gap: 16px; }
-.weather-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: #fff3e7; color: var(--orange); font-size: 26px; }
+.weather-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #fff3e7; font-size: 32px; flex-shrink: 0; }
 .result-panel h2 { margin: 0; font-size: 22px; }
 .result-panel p { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
 .temperature { margin-top: 17px; color: var(--orange); font-size: 58px; font-weight: 800; line-height: 1; }
@@ -60,4 +69,5 @@ button { cursor: pointer; }
 .secondary-button:hover { border-color: var(--teal); color: var(--teal-dark); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @keyframes reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 @media (max-width: 520px) { .shell { width: min(100% - 32px, 620px); padding-top: 20px; } .top-bar { margin-bottom: 42px; } .search-row { flex-direction: column; } .primary-button { min-height: 46px; } .actions { align-items: flex-start; flex-direction: column; } }
