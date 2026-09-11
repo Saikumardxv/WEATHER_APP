@@ -102,7 +102,7 @@ function applyTheme(theme) {
   const isLight = theme === "light";
   document.body.classList.toggle("theme-light", isLight);
   elements.themeToggle.setAttribute("aria-pressed", String(isLight));
-  elements.themeToggle.querySelector(".theme-toggle-text").textContent = isLight ? "White" : "Black";
+  elements.themeToggle.querySelector(".theme-toggle-text").textContent = isLight ? "Black" : "White";
   localStorage.setItem("weather-theme", theme);
 }
 
