@@ -7,6 +7,7 @@ const elements = {
   status: document.querySelector("#status"),
   panel: document.querySelector("#result-panel"),
   clock: document.querySelector("#clock"),
+  themeToggle: document.querySelector("#theme-toggle"),
   icon: document.querySelector("#weather-icon"),
   location: document.querySelector("#location"),
   condition: document.querySelector("#condition"),
@@ -97,6 +98,19 @@ function updateClock() {
   }).format(new Date()).replace(",", "  /");
 }
 
+function applyTheme(theme) {
+  const isLight = theme === "light";
+  document.body.classList.toggle("theme-light", isLight);
+  elements.themeToggle.setAttribute("aria-pressed", String(isLight));
+  elements.themeToggle.querySelector(".theme-toggle-text").textContent = isLight ? "White" : "Black";
+  localStorage.setItem("weather-theme", theme);
+}
+
+function toggleTheme() {
+  const currentTheme = document.body.classList.contains("theme-light") ? "light" : "dark";
+  applyTheme(currentTheme === "light" ? "dark" : "light");
+}
+
 function showWeather(data) {
   const weather = data.weather[0];
   const main = data.main;
@@ -167,6 +181,7 @@ document.querySelectorAll("[data-city]").forEach((button) => {
     getWeather(button.dataset.city);
   });
 });
+elements.themeToggle.addEventListener("click", toggleTheme);
 document.querySelector("#refresh-button").addEventListener("click", () => getWeather(lastCity || elements.input.value));
 document.querySelector("#clear-button").addEventListener("click", () => {
   elements.input.value = "";
@@ -176,6 +191,8 @@ document.querySelector("#clear-button").addEventListener("click", () => {
   setStatus("Ready for a new city");
   elements.input.focus();
 });
+const savedTheme = localStorage.getItem("weather-theme") || "dark";
+applyTheme(savedTheme);
 renderSearchHistory(elements.input.value);
 elements.clearInputBtn.hidden = elements.input.value.length === 0;
 updateClock();
