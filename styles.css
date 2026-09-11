@@ -16,8 +16,10 @@
 body {
   min-width: 320px;
   margin: 0;
-  background: radial-gradient(circle at 85% 5%, rgba(255, 255, 255, 0.2), transparent 32%),
-    linear-gradient(135deg, #0a0a0a 0%, #f5f5f5 35%, #0a0a0a 100%);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,255,255,0.18), transparent 18%),
+    radial-gradient(circle at 78% 10%, rgba(255,255,255,0.12), transparent 20%),
+    linear-gradient(135deg, #050505 0%, #111111 38%, #1d1d1d 100%);
   color: var(--navy);
   font-family: "Manrope", sans-serif;
 }
@@ -26,6 +28,24 @@ button, input { font: inherit; }
 button { cursor: pointer; }
 .shell { width: min(100% - 48px, 620px); margin: 0 auto; padding: 30px 0 34px; }
 .top-bar, .quick-row, .actions { display: flex; align-items: center; }
+
+main.shell {
+  position: relative;
+  z-index: 1;
+}
+
+main.shell::before {
+  content: "";
+  position: absolute;
+  inset: 4% 10% auto auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: -1;
+}
 .top-bar { justify-content: space-between; margin-bottom: 56px; color: var(--muted); font: 500 12px "DM Mono", monospace; }
 .eyebrow, .quick-label, .metric span { color: var(--teal-dark); font: 700 11px "DM Mono", monospace; letter-spacing: .08em; }
 .intro h1 { max-width: 520px; margin: 8px 0 4px; font-size: clamp(2.1rem, 7vw, 3.3rem); line-height: 1.05; letter-spacing: 0; }
